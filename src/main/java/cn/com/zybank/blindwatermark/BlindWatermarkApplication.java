@@ -26,8 +26,9 @@ public class BlindWatermarkApplication {
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     loadOpenCvTest();
     try {
-      Loader.load(opencv_core.class);
+      Loader.load();
     } catch (UnsatisfiedLinkError e) {
+      e.printStackTrace();
       String path = Loader.cacheResource(opencv_core.class, "windows-x86_64/jniopencv_core.dll").getPath();
       new ProcessBuilder("d:/app/opencv/depends.exe", path).start().waitFor();
     }
