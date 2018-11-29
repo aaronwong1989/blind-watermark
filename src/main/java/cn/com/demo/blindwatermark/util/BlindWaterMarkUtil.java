@@ -108,17 +108,21 @@ public class BlindWaterMarkUtil {
    * @param output 图像中的水印
    */
   public static void decode(String srcImg, String wmImg, String output) {
-    Mat decImg = imread(srcImg, CV_LOAD_IMAGE_GRAYSCALE);
+    Mat src = imread(srcImg, CV_LOAD_IMAGE_GRAYSCALE);
     Mat wm = imread(wmImg, CV_LOAD_IMAGE_GRAYSCALE);
 
-    decImg.convertTo(decImg, CV_32F);
-    wm.convertTo(wm, CV_32F);
-    if (decImg.empty() || wm.empty()) {
+    if (src.empty() || wm.empty()) {
       System.exit(1);
     }
 
+    src.convertTo(src, CV_32F);
+    wm.convertTo(wm, CV_32F);
+
+    src = startDFT(src);
+    wm = startDFT(wm);
+
     //srcImg -= wmImg
-    subtract(wm, startDFT(decImg), startDFT(wm));
+    subtract(wm, src, wm);
 
     MatVector newPlanes = new MatVector(2);
     split(wm, newPlanes);
@@ -126,7 +130,6 @@ public class BlindWaterMarkUtil {
 
     imwrite(output, wm);
   }
-
 
   /**
    * 将图像进行DFT
@@ -204,14 +207,14 @@ public class BlindWaterMarkUtil {
   private static void addTextWaterMark(Mat comImg, String watermark) {
 
     Scalar s = new Scalar(0x00, 0);
-    Point p = new Point(comImg.size().width() / 4, comImg.size().height() / 4);
+    Point p = new Point(10, comImg.size().height() / 3);
 
     // add text
     putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3, 20, false);
     // 旋转图片
     flip(comImg, comImg, -1);
 
-    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3,20, false);
+    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3, 20, false);
     flip(comImg, comImg, -1);
   }
 
