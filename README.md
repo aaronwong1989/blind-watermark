@@ -36,7 +36,7 @@ curl -X POST \
   -F 'wmImg=@D:\outPutImg\text_1543460862880_srcImg.png'
 ```
 
-## 采坑记
+## 踩坑记
 
 ### 直接在官方下载opencv并练习使用
 
