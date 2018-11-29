@@ -48,7 +48,7 @@ mvn install:install-file -Dfile=opencv-344.jar -DgroupId=cn.com.demo -DartifactI
 执行代码时需要添加jvm参数 `-Djava.library.path=D:/app/opencv/java/x64` 将opencv的dll文件引入到jvm  
 这种方式只直接使用javacv的官方java类库来实现，但苦于没有`盲水印` 相关的演示代码，而我对opencv技术是一脸懵逼，最后进行了很多尝试也没有成功。
 
-### 参考ww23同学的代码实现maven采坑
+### 参考ww23同学的代码实现: maven的坑
 ww23同学的代码见 [ww23/BlindWatermark](https://github.com/ww23/BlindWatermark)，但他的代码是采用Gradle构建的，我也一度以为用Maven构建也一样，完全没问题，可现实就直接打脸了。  
 按照其代码，引入maven依赖  
 ```xml
