@@ -25,26 +25,88 @@
     <java.version>1.8</java.version>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>macosx-x86_64</id>
+      <activation>
+        <os>
+          <family>mac</family>
+          <arch>x86_64</arch>
+        </os>
+      </activation>
+      <properties>
+        <classifier>macosx-x86_64</classifier>
+      </properties>
+    </profile>
+    <profile>
+      <id>linux-x86_64</id>
+      <activation>
+        <os>
+          <family>unix</family>
+          <arch>amd64</arch>
+        </os>
+      </activation>
+      <properties>
+        <classifier>linux-x86_64</classifier>
+      </properties>
+    </profile>
+    <profile>
+      <id>windows-x86_64</id>
+      <activation>
+        <os>
+          <family>windows</family>
+          <arch>amd64</arch>
+        </os>
+      </activation>
+      <properties>
+        <classifier>windows-x86_64</classifier>
+      </properties>
+    </profile>
+    <profile>
+      <id>windows-x86</id>
+      <activation>
+        <os>
+          <family>windows</family>
+          <arch>x86</arch>
+        </os>
+      </activation>
+      <properties>
+        <classifier>windows-x86</classifier>
+      </properties>
+    </profile>
+  </profiles>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- 安装opencv本地以来jar包到maven本地仓库
-         mvn install:install-file -Dfile=opencv-343.jar -DgroupId=cn.com.zybank -DartifactId=opencv -Dversion=3.4.3 -Dpackaging=jar
-    -->
-    <!--<dependency>-->
-      <!--<groupId>cn.com.zybank</groupId>-->
-      <!--<artifactId>opencv</artifactId>-->
-      <!--<version>3.4.4</version>-->
-    <!--</dependency>-->
-
-    <!-- https://mvnrepository.com/artifact/org.bytedeco.javacpp-presets/opencv -->
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    
+    <dependency><!-- 跨平台API -->
       <groupId>org.bytedeco.javacpp-presets</groupId>
       <artifactId>opencv</artifactId>
       <version>3.4.3-1.4.3</version>
+    </dependency>
+    <dependency><!-- 具体平台的实现 -->
+      <groupId>org.bytedeco.javacpp-presets</groupId>
+      <artifactId>opencv</artifactId>
+      <version>3.4.3-1.4.3</version>
+      <classifier>windows-x86_64</classifier>
+      <!-- 可更换的平台
+       <classifier>windows-x86_64</classifier>
+       <classifier>windows-x86_64-gpu</classifier>
+       <classifier>macosx-x86_64</classifier>
+        <classifier>macosx-x86_64-gpu</classifier>
+       <classifier>linux-x86_64</classifier>
+       <classifier>linux-x86_64-gpu</classifier>
+       <classifier>android-x86_64</classifier>
+       <classifier>ios-x86_64</classifier>
+      -->
     </dependency>
 
     <dependency>

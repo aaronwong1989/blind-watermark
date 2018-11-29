@@ -33,6 +33,7 @@ import org.bytedeco.javacpp.opencv_core.Scalar;
 
 /**
  * 水印工具类
+ *
  * @author Aaron
  */
 public class BlindWaterMarkUtil {
@@ -77,7 +78,7 @@ public class BlindWaterMarkUtil {
    * @param wmImg 加了文本水印的图像
    * @param output 图像中文本水印
    */
-  private void decode(String wmImg, String output) {
+  public static void decode(String wmImg, String output) {
 
     Mat decImg = imread(wmImg, CV_LOAD_IMAGE_GRAYSCALE);
     if (decImg.empty()) {
@@ -106,7 +107,7 @@ public class BlindWaterMarkUtil {
    * @param wmImg 加了图片水印的图像
    * @param output 图像中的水印
    */
-  private void decode(String srcImg, String wmImg, String output) {
+  public static void decode(String srcImg, String wmImg, String output) {
     Mat decImg = imread(srcImg, CV_LOAD_IMAGE_GRAYSCALE);
     Mat wm = imread(wmImg, CV_LOAD_IMAGE_GRAYSCALE);
 
@@ -246,8 +247,6 @@ public class BlindWaterMarkUtil {
   private static void createWaterMark(Mat comImg, Mat wm) {
     MatVector combine = new MatVector(2);
     Mat iwm = new Mat();
-    // System.out.println(comImg.rows() / 2 - wm.rows());
-    //System.out.println(comImg.cols() - wm.cols());
     copyMakeBorder(wm, wm, 0, comImg.rows() / 2 - wm.rows(),
         0, comImg.cols() - wm.cols(), BORDER_CONSTANT, Scalar.all(0));
     combine.put(0, wm);
