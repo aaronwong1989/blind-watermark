@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/water-mark")
 public class BlindWaterMarkAction {
 
+  private static final String FILE_PROTOCOL = "file:";
   private static Logger logger = LoggerFactory.getLogger(BlindWaterMarkAction.class);
 
   @Value("${opencv.imageMarkFile}")
@@ -81,7 +82,7 @@ public class BlindWaterMarkAction {
 
       text = isText ? text : imageMarkFile;
       BlindWaterMarkUtil.encode(srcImg, isText, text, newFile, new MatVector(3));
-      Resource res = resourceLoader.getResource("file:" + newFile);
+      Resource res = resourceLoader.getResource(FILE_PROTOCOL + newFile);
 
       return ResponseEntity
           .ok()
@@ -100,7 +101,7 @@ public class BlindWaterMarkAction {
    * @return 水印
    */
   @PostMapping("/decode/img")
-  public ResponseEntity<?> addWaterMark(
+  public ResponseEntity<?> decodeImgWM(
       @RequestParam("srcImg") MultipartFile srcImg,
       @RequestParam("wmImg") MultipartFile wmImg) throws IOException {
 
@@ -112,7 +113,7 @@ public class BlindWaterMarkAction {
           uploadImageDir + File.separator + "wm_" + System.currentTimeMillis() + ".png";
       BlindWaterMarkUtil.decode(srcFile.getAbsolutePath(), wmFile.getAbsolutePath(), waterMarkImg);
 
-      Resource res = resourceLoader.getResource("file:" + waterMarkImg);
+      Resource res = resourceLoader.getResource(FILE_PROTOCOL + waterMarkImg);
 
       return ResponseEntity
           .ok()
@@ -130,7 +131,7 @@ public class BlindWaterMarkAction {
    * @return 水印
    */
   @PostMapping("/decode/text")
-  public ResponseEntity<?> addWaterMark(
+  public ResponseEntity<?> decodeTextWM(
       @RequestParam("wmImg") MultipartFile wmImg) throws IOException {
 
     File wmFile = saveFile(wmImg);
@@ -140,7 +141,7 @@ public class BlindWaterMarkAction {
           uploadImageDir + File.separator + "wm_" + System.currentTimeMillis() + ".png";
       BlindWaterMarkUtil.decode(wmFile.getAbsolutePath(), waterMarkImg);
 
-      Resource res = resourceLoader.getResource("file:" + waterMarkImg);
+      Resource res = resourceLoader.getResource(FILE_PROTOCOL + waterMarkImg);
 
       return ResponseEntity
           .ok()
@@ -152,6 +153,12 @@ public class BlindWaterMarkAction {
   }
 
 
+  /**
+   * 保存上传文件到本地
+   *
+   * @param image 上传的文件
+   * @return 本地文件引用
+   */
   private File saveFile(MultipartFile image) throws IOException {
     //获取文件名
     String fileName = image.getOriginalFilename();
