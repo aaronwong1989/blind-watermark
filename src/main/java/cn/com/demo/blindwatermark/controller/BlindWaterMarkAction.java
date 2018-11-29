@@ -12,6 +12,7 @@ import org.bytedeco.javacpp.opencv_core.MatVector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
@@ -33,9 +34,12 @@ public class BlindWaterMarkAction {
 
   private static Logger logger = LoggerFactory.getLogger(BlindWaterMarkAction.class);
 
-  private final String imageMarkFile = "D:\\app\\opencv\\wm.png";
-  private final String outputImageDir = "D:\\outPutImg";
-  private final String uploadImageDir = "D:\\uploadImageDir";
+  @Value("${opencv.imageMarkFile}")
+  private String imageMarkFile;
+  @Value("${opencv.outputImageDir}")
+  private String outputImageDir;
+  @Value("${opencv.uploadImageDir}")
+  private String uploadImageDir;
 
   private final ResourceLoader resourceLoader;
 
@@ -89,8 +93,7 @@ public class BlindWaterMarkAction {
   }
 
   /**
-   * 获取图片水印
-   * // TODO 目前报错
+   * 获取图片水印 // TODO 目前报错
    *
    * @param srcImg 未加水印原图
    * @param wmImg 已加水印图片
@@ -131,7 +134,7 @@ public class BlindWaterMarkAction {
       @RequestParam("wmImg") MultipartFile wmImg) throws IOException {
 
     File wmFile = saveFile(wmImg);
-    if ( wmFile.exists()) {
+    if (wmFile.exists()) {
       // 水印文件
       String waterMarkImg =
           uploadImageDir + File.separator + "wm_" + System.currentTimeMillis() + ".png";

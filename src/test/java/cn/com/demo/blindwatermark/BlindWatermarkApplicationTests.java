@@ -10,9 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- * TODO 执行时增加参数 <br> -Djava.library.path=D:/app/opencv/java/x64
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BlindWatermarkApplicationTests {

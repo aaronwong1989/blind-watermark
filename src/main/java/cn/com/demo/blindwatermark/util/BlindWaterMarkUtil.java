@@ -204,16 +204,14 @@ public class BlindWaterMarkUtil {
   private static void addTextWaterMark(Mat comImg, String watermark) {
 
     Scalar s = new Scalar(0x00, 0);
-    Point p = new Point(comImg.size().width() / 3, comImg.size().height() / 3);
+    Point p = new Point(comImg.size().width() / 4, comImg.size().height() / 4);
 
     // add text
-    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3,
-        20, false);
+    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3, 20, false);
     // 旋转图片
     flip(comImg, comImg, -1);
 
-    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3,
-        20, false);
+    putText(comImg, watermark, p, CV_FONT_HERSHEY_COMPLEX, 1.5, s, 3,20, false);
     flip(comImg, comImg, -1);
   }
 
