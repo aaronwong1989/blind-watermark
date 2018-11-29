@@ -25,57 +25,6 @@
     <java.version>1.8</java.version>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>macosx-x86_64</id>
-      <activation>
-        <os>
-          <family>mac</family>
-          <arch>x86_64</arch>
-        </os>
-      </activation>
-      <properties>
-        <classifier>macosx-x86_64</classifier>
-      </properties>
-    </profile>
-    <profile>
-      <id>linux-x86_64</id>
-      <activation>
-        <os>
-          <family>unix</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <classifier>linux-x86_64</classifier>
-      </properties>
-    </profile>
-    <profile>
-      <id>windows-x86_64</id>
-      <activation>
-        <os>
-          <family>windows</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <classifier>windows-x86_64</classifier>
-      </properties>
-    </profile>
-    <profile>
-      <id>windows-x86</id>
-      <activation>
-        <os>
-          <family>windows</family>
-          <arch>x86</arch>
-        </os>
-      </activation>
-      <properties>
-        <classifier>windows-x86</classifier>
-      </properties>
-    </profile>
-  </profiles>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

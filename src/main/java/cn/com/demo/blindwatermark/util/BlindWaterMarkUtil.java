@@ -1,4 +1,4 @@
-package cn.com.zybank.blindwatermark.util;
+package cn.com.demo.blindwatermark.util;
 
 import static org.bytedeco.javacpp.opencv_core.BORDER_CONSTANT;
 import static org.bytedeco.javacpp.opencv_core.CV_32F;

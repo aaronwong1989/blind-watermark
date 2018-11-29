@@ -1,4 +1,4 @@
-package cn.com.zybank.blindwatermark;
+package cn.com.demo.blindwatermark;
 
 import java.io.IOException;
 import java.util.Arrays;

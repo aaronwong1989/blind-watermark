@@ -1,9 +1,9 @@
-package cn.com.zybank.blindwatermark.controller;
+package cn.com.demo.blindwatermark.controller;
 
 import static org.bytedeco.javacpp.opencv_imgcodecs.CV_LOAD_IMAGE_COLOR;
 import static org.bytedeco.javacpp.opencv_imgcodecs.imread;
 
-import cn.com.zybank.blindwatermark.util.BlindWaterMarkUtil;
+import cn.com.demo.blindwatermark.util.BlindWaterMarkUtil;
 import java.io.File;
 import java.io.IOException;
 import javax.annotation.PostConstruct;
@@ -33,7 +33,7 @@ public class BlindWaterMarkAction {
 
   private static Logger logger = LoggerFactory.getLogger(BlindWaterMarkAction.class);
 
-  private final String imageMarkFile = "E:\\2018ZYB-work\\favicon\\zybank-favicon_package_v0.16\\favicon-16x16.png";
+  private final String imageMarkFile = "D:\\app\\opencv\\wm.png";
   private final String outputImageDir = "D:\\outPutImg";
   private final String uploadImageDir = "D:\\uploadImageDir";
 

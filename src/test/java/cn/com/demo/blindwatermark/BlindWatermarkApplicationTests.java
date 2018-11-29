@@ -1,11 +1,9 @@
-package cn.com.zybank.blindwatermark;
+package cn.com.demo.blindwatermark;
 
 import java.util.Arrays;
 import org.bytedeco.javacpp.opencv_core.Mat;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
