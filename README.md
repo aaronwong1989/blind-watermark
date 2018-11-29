@@ -42,7 +42,7 @@ curl -X POST \
 
 [下载opencv](https://opencv.org/releases.html)  下载后拷贝其中的java文件夹 
 ```bash
-# 将java包安装到本地仓库 然后在pom.xml中引入
+# 将jar包安装到本地仓库 然后在pom.xml中引入
 mvn install:install-file -Dfile=opencv-344.jar -DgroupId=cn.com.demo -DartifactId=opencv -Dversion=3.4.4 -Dpackaging=jar
 ``` 
 执行代码时需要添加jvm参数 `-Djava.library.path=D:/app/opencv/java/x64` 将opencv的dll文件引入到jvm  
