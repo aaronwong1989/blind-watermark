@@ -23,6 +23,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
+    <opencv.version>3.4.2-1.4.2</opencv.version>
   </properties>
 
   <dependencies>
@@ -34,12 +35,12 @@
     <dependency><!-- 跨平台API -->
       <groupId>org.bytedeco.javacpp-presets</groupId>
       <artifactId>opencv</artifactId>
-      <version>3.4.2-1.4.2</version>
+      <version>${opencv.version}</version>
     </dependency>
     <dependency><!-- 具体平台的实现 -->
       <groupId>org.bytedeco.javacpp-presets</groupId>
       <artifactId>opencv</artifactId>
-      <version>3.4.2-1.4.2</version>
+      <version>${opencv.version}</version>
       <classifier>windows-x86_64</classifier>
       <!-- 可更换的平台
        <classifier>windows-x86_64</classifier>
